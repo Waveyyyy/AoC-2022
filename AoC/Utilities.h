@@ -1,3 +1,8 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <iterator>
 
-std::vector<std::string> fIn(const char* fPath);
+
+std::istream_iterator<std::string> fIn(const char* fPath);
