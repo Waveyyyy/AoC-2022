@@ -1,3 +1,3 @@
 #pragma once
 
-void fIn(const char* fPath);
+std::vector<std::string> fIn(const char* fPath);
