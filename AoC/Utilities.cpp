@@ -1,6 +1,5 @@
 #include "Utilities.h"
 
-
 std::istream_iterator<std::string> getfIter(const char* fPath)
 {
 	// Open the file at the given path
