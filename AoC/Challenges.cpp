@@ -3,7 +3,7 @@
 
 void DayOne()
 {
-	std::istream_iterator<std::string> file = getfIter("Day1.txt");
+	std::istream_iterator<std::string> file = string_IS_iter("Day1.txt");
 
 
 
