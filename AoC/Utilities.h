@@ -11,4 +11,5 @@
 //
 // Returns: An iterator for the file, or an empty iterator if the file could not
 // be opened.
-std::istream_iterator<std::string> getfIter(const char* fPath);
+std::istream_iterator<std::string> string_IS_iter(const char* fPath);
+
