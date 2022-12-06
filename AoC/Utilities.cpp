@@ -46,16 +46,19 @@ std::vector<std::string> rFile_winapi(const char* fPath)
 	while (ReadFile(fHandle, &c, sizeof(c), &bRead, NULL) && bRead > 0)
 	{
 		line.push_back(c);
-		if (c == '\r')
+		if (c != '\r')
 		{
-			if (ReadFile(fHandle, &c, sizeof(c), &bRead, NULL) && bRead > 0)
+			continue;
+		}
+		if (ReadFile(fHandle, &c, sizeof(c), &bRead, NULL) && bRead > 0)
+		{
+			line.push_back(c);
+			if (c != '\n')
 			{
-				if (c == '\n')
-				{
-					lines.push_back(line);
-					line.clear();
-				}
+				continue;
 			}
+			lines.push_back(line);
+			line.clear();
 		}
 	}
 	CloseHandle(fHandle);
