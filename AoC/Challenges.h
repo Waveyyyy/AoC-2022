@@ -1,4 +1,4 @@
 #pragma once
 
 
-void DayOne();
+void DayOne_pt1();
