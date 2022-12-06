@@ -38,13 +38,25 @@ std::vector<std::string> rFile_winapi(const char* fPath)
 	}
 
 	// Read the file contents
-	char buf[1024];	// Buffer to hold the read data
-	DWORD bRead;	// Number of bytes actually read
+	std::string line;	// Buffer to hold the read data
+	char c;				// Stores current character
+	DWORD bRead;		// Number of bytes actually read
 	std::vector<std::string> lines;
 	
-	while (ReadFile(fHandle, buf, sizeof(buf), &bRead, NULL) && bRead > 0)
+	while (ReadFile(fHandle, &c, sizeof(c), &bRead, NULL) && bRead > 0)
 	{
-		lines.push_back(std::string(buf, bRead));
+		line.push_back(c);
+		if (c == '\r')
+		{
+			if (ReadFile(fHandle, &c, sizeof(c), &bRead, NULL) && bRead > 0)
+			{
+				if (c == '\n')
+				{
+					lines.push_back(line);
+					line.clear();
+				}
+			}
+		}
 	}
 	CloseHandle(fHandle);
 
